@@ -1,4 +1,4 @@
-// Частицы
+// Частицы (оставляем без изменений)
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -6,6 +6,8 @@ canvas.height = window.innerHeight;
 
 const particlesArray = [];
 let mouse = { x: null, y: null, radius: 120 };
+const isMobile = window.innerWidth <= 768;
+const maxParticles = isMobile ? 50 : 120;
 
 class Particle {
   constructor() {
@@ -24,12 +26,14 @@ class Particle {
     if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
     if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
 
-    let dx = mouse.x - this.x;
-    let dy = mouse.y - this.y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
-    if (distance < mouse.radius) {
-      this.x -= (dx / distance) * 2.5;
-      this.y -= (dy / distance) * 2.5;
+    if (!isMobile && mouse.x && mouse.y) {
+      let dx = mouse.x - this.x;
+      let dy = mouse.y - this.y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < mouse.radius) {
+        this.x -= (dx / distance) * 2.5;
+        this.y -= (dy / distance) * 2.5;
+      }
     }
 
     this.life -= 1;
@@ -51,7 +55,7 @@ class Particle {
 }
 
 function init() {
-  for (let i = 0; i < 120; i++) {
+  for (let i = 0; i < maxParticles; i++) {
     particlesArray.push(new Particle());
   }
 }
@@ -68,22 +72,24 @@ function animate() {
 init();
 animate();
 
-window.addEventListener('mousemove', (event) => {
-  mouse.x = event.x;
-  mouse.y = event.y;
-});
+if (!isMobile) {
+  window.addEventListener('mousemove', (event) => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+  });
 
-window.addEventListener('mouseout', () => {
-  mouse.x = null;
-  mouse.y = null;
-});
+  window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+}
 
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
 
-// Плавная прокрутка для ссылок с классом .scroll-link
+// Плавная прокрутка
 document.querySelectorAll('.scroll-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
@@ -91,4 +97,44 @@ document.querySelectorAll('.scroll-link').forEach(link => {
     const targetElement = document.querySelector(targetId);
     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+});
+
+// Бургер-меню
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (!navToggle || !navLinks) {
+  console.error('Ошибка: .nav-toggle или .nav-links не найдены в DOM');
+} else {
+  navToggle.addEventListener('click', () => {
+    console.log('Кнопка бургер-меню нажата');
+    navLinks.classList.toggle('active');
+    console.log('Класс .active добавлен/удален:', navLinks.classList.contains('active'));
+  });
+}
+
+// Переключение тем
+const toggleButton = document.querySelector('.theme-toggle');
+const body = document.body;
+let currentTheme = 0;
+
+toggleButton.addEventListener('click', () => {
+  currentTheme = (currentTheme + 1) % 3;
+  const icon = toggleButton.querySelector('i');
+
+  if (currentTheme === 0) {
+    body.classList.remove('soft-dark', 'light');
+    icon.classList.remove('fa-sun', 'fa-adjust');
+    icon.classList.add('fa-moon');
+  } else if (currentTheme === 1) {
+    body.classList.remove('light');
+    body.classList.add('soft-dark');
+    icon.classList.remove('fa-moon', 'fa-sun');
+    icon.classList.add('fa-adjust');
+  } else {
+    body.classList.remove('soft-dark');
+    body.classList.add('light');
+    icon.classList.remove('fa-moon', 'fa-adjust');
+    icon.classList.add('fa-sun');
+  }
 });

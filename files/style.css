@@ -16,7 +16,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  transition: background 1s ease, color 1s ease; /* Плавный переход для темы */
+  transition: background 1s ease, color 1s ease;
 }
 
 /* Смягченный темный */
@@ -40,7 +40,7 @@ body.light {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 0, 0, 0.95));
   z-index: 1;
   animation: subtlePulse 10s infinite ease-in-out;
-  transition: background 1s ease; /* Плавный переход фона */
+  transition: background 1s ease;
 }
 
 body.soft-dark .background-overlay {
@@ -63,7 +63,7 @@ nav {
   align-items: center;
   padding: 20px 40px;
   background: rgba(0, 0, 0, 0.85);
-  box-shadow: 0 4px 15px rgba(255, 51, 51, 0.2); /* Мягче, чем 0.3 */
+  box-shadow: 0 4px 15px rgba(255, 51, 51, 0.2);
   border-bottom: 1px solid rgba(255, 51, 51, 0.2);
   position: fixed;
   top: 0;
@@ -90,7 +90,7 @@ body.light nav {
   font-size: 1.6em;
   font-weight: 800;
   color: #ff3333;
-  text-shadow: 0 0 10px rgba(255, 51, 51, 0.5); /* Мягче, чем 12px */
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
   margin-left: -10px;
   transition: color 1s ease, text-shadow 1s ease;
 }
@@ -113,7 +113,7 @@ body.light .nav-logo {
 }
 
 body.light .nav-logo img {
-  filter: brightness(0); /* Черный логотип в светлой теме */
+  filter: brightness(0);
 }
 
 .nav-links {
@@ -180,7 +180,7 @@ body.light .nav-links a:hover {
   font-size: 4.5em;
   font-weight: 900;
   color: #ff3333;
-  text-shadow: 0 0 20px rgba(255, 51, 51, 0.5); /* Мягче, чем 25px */
+  text-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
   margin-bottom: 20px;
   animation: fadeIn 1.5s ease-out;
   transition: color 1s ease, text-shadow 1s ease;
@@ -339,7 +339,7 @@ body.light .features-section {
   color: #fff;
   margin-bottom: 20px;
   animation: fadeIn 1.5s ease-out;
-  text-shadow: 0 0 10px rgba(255, 51, 51, 0.3); /* Мягче, чем 15px */
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
   transition: color 1s ease, text-shadow 1s ease;
 }
 
@@ -594,7 +594,7 @@ body.light .info-content p {
 }
 
 body.soft-dark .download-section {
-  background: rgba(0, 0, 0, 0.7); /* Добавил фон для согласованности */
+  background: rgba(0, 0, 0, 0.7);
 }
 
 body.light .download-section {
@@ -740,7 +740,7 @@ body.light .download-info i {
 }
 
 body.soft-dark .docs-section {
-  background: rgba(0, 0, 0, 0.7); /* Добавил фон для согласованности */
+  background: rgba(0, 0, 0, 0.7);
 }
 
 body.light .docs-section {
@@ -1097,4 +1097,52 @@ body.light .theme-toggle {
 body.light @keyframes logoGlow {
   0% { filter: brightness(0) drop-shadow(0 0 5px rgba(51, 51, 51, 0.5)); }
   100% { filter: brightness(0) drop-shadow(0 0 10px rgba(51, 51, 51, 0.5)); }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 20px;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-links.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-toggle {
+    display: block;
+    font-size: 1.5em;
+    color: #ff3333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
 }

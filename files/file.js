@@ -1,4 +1,4 @@
-// Частицы (оставляем без изменений)
+// Частицы с параллаксом и линиями
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -18,10 +18,11 @@ class Particle {
     this.speedY = Math.random() * 0.6 - 0.3;
     this.color = `rgba(255, 51, 51, ${Math.random() * 0.6 + 0.2})`;
     this.life = Math.random() * 120 + 60;
+    this.depth = Math.random(); // Для параллакса
   }
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
+  update(scrollY) {
+    this.x += this.speedX * (1 - this.depth);
+    this.y += this.speedY * (1 - this.depth) + scrollY * this.depth * 0.05;
 
     if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
     if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
@@ -47,7 +48,7 @@ class Particle {
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.shadowBlur = 12;
+    ctx.shadowBlur = 15;
     ctx.shadowColor = '#ff3333';
     ctx.fill();
     ctx.shadowBlur = 0;
@@ -60,12 +61,32 @@ function init() {
   }
 }
 
+function connectParticles() {
+  for (let i = 0; i < particlesArray.length; i++) {
+    for (let j = i + 1; j < particlesArray.length; j++) {
+      let dx = particlesArray[i].x - particlesArray[j].x;
+      let dy = particlesArray[i].y - particlesArray[j].y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < 100) {
+        ctx.strokeStyle = `rgba(255, 51, 51, ${1 - distance / 100})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const scrollY = window.scrollY;
   for (let i = 0; i < particlesArray.length; i++) {
-    particlesArray[i].update();
+    particlesArray[i].update(scrollY);
     particlesArray[i].draw();
   }
+  if (!isMobile) connectParticles();
   requestAnimationFrame(animate);
 }
 

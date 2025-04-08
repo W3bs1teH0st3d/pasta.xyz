@@ -13,24 +13,24 @@
   <canvas id="particles"></canvas>
   <div class="background-overlay"></div>
   <div class="content-wrapper">
-	<nav>
-	  <div class="nav-logo">
-		<img src="logo.png" alt="logo">
-		<span>Pasta.xyz</span>
-	  </div>
-	  <button class="nav-toggle"><i class="fas fa-bars"></i></button>
-	  <div class="nav-links">
-		<a href="#">Главная</a>
-		<a href="documents">Документы</a>
-		<a href="download">Скачать</a>
-	  </div>
-	</nav>
+    <nav>
+      <div class="nav-logo">
+        <img src="logo.png" alt="logo">
+        <span>Pasta.xyz</span>
+      </div>
+      <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+      <div class="nav-links">
+        <a href="#">Главная</a>
+        <a href="documents">Документы</a>
+        <a href="download">Скачать</a>
+      </div>
+    </nav>
     <section class="hero-section">
       <div class="hero-text">
         <h1>Pasta.xyz <span class="version"><i class="fas fa-cog"></i> v1.16.5</span></h1>
         <p>Унижай противников и побеждай с командой только вместе с Pasta.xyz! Лучший клиент 1.16.5 который может обходить funtime, reallyworld, и другие сервера!</p>
         <div class="hero-buttons">
-          <a href="download.html" class="btn-primary"><i class="fa-solid fa-folder"></i></i> Скачать</a>
+          <a href="download.html" class="btn-primary"><i class="fa-solid fa-folder"></i> Скачать</a>
           <a href="#features" class="btn-secondary scroll-link"><i class="fas fa-info-circle"></i> Функции</a>
         </div>
       </div>
@@ -123,6 +123,37 @@
       </div>
     </section>
 
+    <section class="status-section">
+      <h2>Обходы серверов</h2>
+      <div class="status-grid">
+        <div class="status-card">
+          <i class="fas fa-server"></i>
+          <h3>ReallyWorld</h3>
+          <p>Обходит</p>
+        </div>
+        <div class="status-card">
+          <i class="fas fa-server"></i>
+          <h3>Funtime</h3>
+          <p>Обходит</p>
+        </div>
+        <div class="status-card">
+          <i class="fas fa-server"></i>
+          <h3>Spookytime</h3>
+          <p>Обходит</p>
+        </div>
+        <div class="status-card">
+          <i class="fas fa-server"></i>
+          <h3>Holyworld</h3>
+          <p>Обходит</p>
+        </div>
+        <div class="status-card">
+          <i class="fas fa-server"></i>
+          <h3>HvH Сервера</h3>
+          <p>Обходит</p>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="footer-content">
         <div class="footer-logo">
@@ -177,6 +208,11 @@
         icon.classList.add('fa-sun');
       }
     });
+
+    // Управление мобильным меню
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
   </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92d06b651b01bcae',t:'MTc0NDEwMTIwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

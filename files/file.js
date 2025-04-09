@@ -1,11 +1,12 @@
-// Частицы с параллаксом и линиями
+/* Copyright (c) 2025 Pasta.xyz All rights reserved. Unauthorized use prohibited. */
+/* Questions to discord: https://discord.gg/9dMNYANZ */
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const particlesArray = [];
-let mouse = { x: null, y: null, radius: 120 };
+let mouse = { x: null, y: null, radius: 140 };
 const isMobile = window.innerWidth <= 768;
 const maxParticles = isMobile ? 50 : 120;
 
@@ -18,7 +19,7 @@ class Particle {
     this.speedY = Math.random() * 0.6 - 0.3;
     this.color = `rgba(255, 51, 51, ${Math.random() * 0.6 + 0.2})`;
     this.life = Math.random() * 120 + 60;
-    this.depth = Math.random(); // Для параллакса
+    this.depth = Math.random();
   }
   update(scrollY) {
     this.x += this.speedX * (1 - this.depth);
@@ -110,7 +111,6 @@ window.addEventListener('resize', () => {
   canvas.height = window.innerHeight;
 });
 
-// Плавная прокрутка
 document.querySelectorAll('.scroll-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
@@ -120,17 +120,16 @@ document.querySelectorAll('.scroll-link').forEach(link => {
   });
 });
 
-// Бургер-меню
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 if (!navToggle || !navLinks) {
-  console.error('Ошибка: .nav-toggle или .nav-links не найдены в DOM');
+  console.error('error');
 } else {
   navToggle.addEventListener('click', () => {
-    console.log('Кнопка бургер-меню нажата');
+    console.log('menu');
     navLinks.classList.toggle('active');
-    console.log('Класс .active добавлен/удален:', navLinks.classList.contains('active'));
+    console.log('log:', navLinks.classList.contains('active'));
   });
 }
 

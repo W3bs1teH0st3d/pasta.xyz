@@ -5,34 +5,33 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let mouse = { x: null, y: null, radius: 250 };
+let mouse = { x: null, y: null, radius: 200 };
 const isMobile = window.innerWidth <= 768;
-const gridLines = 30;
+const gridLines = 20;
 const horizonY = canvas.height * 0.4;
 const starsArray = [];
-const maxStars = 45; // Уменьшено для оптимизации
+const maxStars = 30;
 const particlesArray = [];
-const maxParticles = 35; // Уменьшено для оптимизации
-const glowArray = [];
+const maxParticles = 20;
 
 class GridLine {
     constructor(isVertical, index) {
         this.isVertical = isVertical;
         this.index = index;
         this.depth = index / gridLines;
-        this.color = `rgba(255, 51, 51, ${0.3 - this.depth * 0.2})`; // Более прозрачно
+        this.color = `rgba(255, 51, 51, ${0.2 - this.depth * 0.15})`;
         this.waveOffset = Math.random() * Math.PI * 2;
-        this.waveAmplitude = 40 + this.depth * 60;
+        this.waveAmplitude = 40 + this.depth * 60; // Увеличена амплитуда для выразительности
     }
 
     update() {
-        this.waveOffset += 0.01 * (1 - this.depth); // Замедленные волны
+        this.waveOffset += 0.01 * (1 - this.depth); // Медленные волны
     }
 
     draw() {
         ctx.strokeStyle = this.color;
-        ctx.lineWidth = 1 - this.depth * 0.5;
-        ctx.shadowBlur = 5; // Уменьшено свечение
+        ctx.lineWidth = 0.8 - this.depth * 0.4;
+        ctx.shadowBlur = 3;
         ctx.shadowColor = '#ff3333';
         ctx.beginPath();
 
@@ -46,8 +45,9 @@ class GridLine {
             const perspectiveY = horizonY + (y - horizonY) * (1 - this.depth);
             ctx.moveTo(0, perspectiveY);
             if (this.index < gridLines / 2) {
-                for (let x = 0; x <= canvas.width; x += 20) { // Шаг увеличен для оптимизации
-                    const waveY = perspectiveY + Math.sin(x * 0.005 + this.waveOffset) * this.waveAmplitude;
+                // Пошаговое рисование для выразительных волн
+                for (let x = 0; x <= canvas.width; x += 40) { // Шаг 40 для оптимизации
+                    const waveY = perspectiveY + Math.sin(x * 0.008 + this.waveOffset) * this.waveAmplitude;
                     ctx.lineTo(x, waveY);
                 }
             } else {
@@ -65,14 +65,14 @@ class Star {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * horizonY;
         this.size = Math.random() * 2 + 0.5;
-        this.opacity = Math.random() * 0.3 + 0.1; // Более прозрачно
-        this.twinkleSpeed = Math.random() * 0.06 + 0.03;
+        this.opacity = Math.random() * 0.2 + 0.1;
+        this.twinkleSpeed = Math.random() * 0.05 + 0.02;
         this.twinkleOffset = Math.random() * Math.PI * 2;
     }
 
     update() {
         this.twinkleOffset += this.twinkleSpeed;
-        this.opacity = 0.2 + Math.sin(this.twinkleOffset) * 0.1; // Уменьшена яркость
+        this.opacity = 0.15 + Math.sin(this.twinkleOffset) * 0.1;
     }
 
     draw() {
@@ -87,25 +87,25 @@ class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = horizonY + Math.random() * (canvas.height - horizonY);
-        this.size = Math.random() * 4 + 1;
-        this.speedX = Math.random() * 0.8 - 0.4;
-        this.speedY = Math.random() * 0.8 - 0.4;
-        this.life = Math.random() * 120 + 60;
-        this.opacity = 0.6; // Уменьшена начальная прозрачность
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 0.6 - 0.3;
+        this.speedY = Math.random() * 0.6 - 0.3;
+        this.life = Math.random() * 100 + 50;
+        this.opacity = 0.5;
     }
 
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
         this.life--;
-        this.opacity = (this.life / 120) * 0.7; // Более плавное затухание
+        this.opacity = (this.life / 100) * 0.5;
         if (mouse.x && mouse.y) {
             const dx = this.x - mouse.x;
             const dy = this.y - mouse.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
             if (distance < mouse.radius) {
-                this.speedX += dx * 0.001;
-                this.speedY += dy * 0.001;
+                this.speedX += dx * 0.0005;
+                this.speedY += dy * 0.0005;
             }
         }
     }
@@ -118,41 +118,16 @@ class Particle {
     }
 }
 
-class Glow {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.radius = 0;
-        this.maxRadius = Math.random() * 30 + 20;
-        this.opacity = 0.3; // Более прозрачно
-        this.growthRate = 0.5;
-    }
-
-    update() {
-        this.radius += this.growthRate;
-        this.opacity -= 0.005;
-        if (this.opacity <= 0) this.radius = this.maxRadius;
-    }
-
-    draw() {
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-        gradient.addColorStop(0, `rgba(255, 51, 51, ${this.opacity})`);
-        gradient.addColorStop(1, 'rgba(255, 51, 51, 0)');
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
 const gridArray = [];
 let backgroundCache = null;
+let lastFrameTime = 0;
+const targetFPS = 30;
+const frameInterval = 1000 / targetFPS;
 
 function init() {
     gridArray.length = 0;
     starsArray.length = 0;
     particlesArray.length = 0;
-    glowArray.length = 0;
 
     for (let i = 0; i < gridLines; i++) {
         gridArray.push(new GridLine(true, i));
@@ -182,9 +157,9 @@ function drawBackground() {
         cacheCtx.fillStyle = gradient;
         cacheCtx.fillRect(0, 0, canvas.width, canvas.height);
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             const y = horizonY - 10 + i * 5;
-            cacheCtx.strokeStyle = `rgba(255, 51, 51, ${0.1 - i * 0.02})`; // Уменьшена яркость
+            cacheCtx.strokeStyle = `rgba(255, 51, 51, ${0.08 - i * 0.02})`;
             cacheCtx.lineWidth = 1;
             cacheCtx.beginPath();
             cacheCtx.moveTo(0, y);
@@ -194,20 +169,26 @@ function drawBackground() {
     }
     ctx.drawImage(backgroundCache, 0, 0);
 
-    ctx.strokeStyle = `rgba(255, 51, 51, ${0.2 + Math.sin(Date.now() * 0.002) * 0.1})`; // Более прозрачный горизонт
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = `rgba(255, 51, 51, ${0.15 + Math.sin(Date.now() * 0.002) * 0.05})`;
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(0, horizonY);
     ctx.lineTo(canvas.width, horizonY);
     ctx.stroke();
 }
 
-function animate() {
+function animate(currentTime) {
+    if (currentTime - lastFrameTime < frameInterval) {
+        requestAnimationFrame(animate);
+        return;
+    }
+    lastFrameTime = currentTime;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBackground();
 
     let horizonOffset = (!isMobile && mouse.x && mouse.y) 
-        ? (mouse.y - canvas.height / 2) * 0.05 
+        ? (mouse.y - canvas.height / 2) * 0.03 
         : 0;
 
     starsArray.forEach(star => {
@@ -223,15 +204,6 @@ function animate() {
         }
     });
 
-    if (Math.random() < 0.03 && glowArray.length < 10) { // Ограничение количества свечений
-        glowArray.push(new Glow(Math.random() * canvas.width, horizonY + Math.random() * (canvas.height - horizonY)));
-    }
-    glowArray.forEach((glow, i) => {
-        glow.update();
-        glow.draw();
-        if (glow.opacity <= 0) glowArray.splice(i, 1);
-    });
-
     gridArray.forEach(line => {
         line.update();
         line.draw();
@@ -241,10 +213,10 @@ function animate() {
 }
 
 init();
-animate();
+requestAnimationFrame(animate);
 
 let lastMouseUpdate = 0;
-const mouseThrottle = 16;
+const mouseThrottle = 32;
 
 if (!isMobile) {
     window.addEventListener('mousemove', (event) => {

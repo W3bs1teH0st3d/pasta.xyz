@@ -1,5 +1,3 @@
-/* Copyright (c) 2025 Pasta.xyz All rights reserved. Unauthorized use prohibited. */
-/* Questions to discord: https://discord.gg/9dMNYANZ */
 * {
   margin: 0;
   padding: 0;
@@ -34,24 +32,31 @@ body.light {
 }
 
 .background-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255, 51, 51, 0.2), rgba(0, 0, 0, 0.9));
-  z-index: 1;
-  animation: subtleShift 20s infinite ease-in-out;
-  transition: background 1s ease;
-  box-shadow: inset 0 0 100px rgba(255, 51, 51, 0.1);
+    position: fixed;
+    top: -20px;
+    left: -20px; 
+    width: calc(100% + 40px); 
+    height: calc(100% + 40px);
+    background: linear-gradient(135deg, rgba(255, 51, 51, 0.2), rgba(0, 0, 0, 0.9));
+    z-index: 1;
+    transition: background 1s ease;
+    box-shadow: inset 0 0 100px rgba(255, 51, 51, 0.1);
 }
 
 body.soft-dark .background-overlay {
-  background: linear-gradient(135deg, rgba(18, 18, 18, 0.9), rgba(30, 10, 10, 0.95));
+    background: linear-gradient(135deg, rgba(18, 18, 18, 0.9), rgba(30, 10, 10, 0.95));
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
 }
 
 body.light .background-overlay {
-  background: linear-gradient(135deg, rgba(245, 245, 245, 0.9), rgba(220, 220, 220, 0.95));
+    background: linear-gradient(135deg, rgba(245, 245, 245, 0.9), rgba(220, 220, 220, 0.95));
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
 }
 
 .content-wrapper {
@@ -1383,4 +1388,220 @@ body.light .nav-logo {
 @keyframes floatLogo {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
+}
+
+
+.login-section {
+  padding: 120px 40px;
+  text-align: center;
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 51, 51, 0.4);
+  max-width: 400px;
+  width: 100%;
+  transition: background 1s ease, box-shadow 0.3s ease, border-color 1s ease;
+}
+
+body.soft-dark .login-card {
+  background: rgba(20, 20, 20, 0.95);
+}
+
+body.light .login-card {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.login-card h1 {
+  font-size: 2.5em;
+  color: #ff3333;
+  text-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
+  margin-bottom: 15px;
+  transition: color 1s ease, text-shadow 1s ease;
+}
+
+body.light .login-card h1 {
+  text-shadow: none;
+}
+
+.login-card p {
+  font-size: 1.1em;
+  color: #ddd;
+  margin-bottom: 30px;
+  transition: color 1s ease;
+}
+
+body.soft-dark .login-card p {
+  color: #b0b0b0;
+}
+
+body.light .login-card p {
+  color: #666666;
+}
+
+.login-form .input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 51, 51, 0.4);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1em;
+  transition: border-color 0.3s ease, background 1s ease, color 1s ease;
+}
+
+body.light .login-form input {
+  background: rgba(0, 0, 0, 0.05);
+  color: #333333;
+}
+
+.login-form input:focus {
+  border-color: #ff3333;
+  outline: none;
+}
+
+.login-form .input-group i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff3333;
+  font-size: 1.2em;
+}
+
+.login-form .input-group i:first-child {
+  left: 12px;
+}
+
+.login-form .toggle-password {
+  right: 12px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: #ff3333;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  min-height: 20px;
+}
+
+.login-footer {
+  margin-top: 20px;
+  font-size: 0.95em;
+  color: #ddd;
+  transition: color 1s ease;
+}
+
+body.soft-dark .login-footer {
+  color: #b0b0b0;
+}
+
+body.light .login-footer {
+  color: #666666;
+}
+
+.login-footer a {
+  color: #ff3333;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: #cc0000;
+}
+
+
+
+
+.userpanel-section {
+  padding: 120px 40px;
+  text-align: center;
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-content {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 51, 51, 0.4);
+  max-width: 600px;
+  width: 100%;
+  transition: background 1s ease, box-shadow 0.3s ease, border-color 1s ease;
+}
+
+body.soft-dark .tab-content {
+  background: rgba(20, 20, 20, 0.95);
+}
+
+body.light .tab-content {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.tab-pane h2 {
+  font-size: 2.5em;
+  color: #ff3333;
+  text-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
+  margin-bottom: 20px;
+  transition: color 1s ease, text-shadow 1s ease;
+}
+
+body.light .tab-pane h2 {
+  text-shadow: none;
+}
+
+.tab-pane p {
+  font-size: 1.1em;
+  color: #ddd;
+  margin-bottom: 15px;
+  transition: color 1s ease;
+}
+
+body.soft-dark .tab-pane p {
+  color: #b0b0b0;
+}
+
+body.light .tab-pane p {
+  color: #666666;
+}
+
+.tab-pane p span {
+  color: #ff3333;
+}
+
+.tab-pane button {
+  margin: 10px;
+}
+
+#offline-message {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 51, 51, 0.2);
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#offline-message h2 {
+  font-size: 2em;
+  color: #ff3333;
+  margin-bottom: 10px;
+}
+
+#offline-message p {
+  font-size: 1.1em;
+  color: #ddd;
 }

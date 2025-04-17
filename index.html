@@ -3,216 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main - Pasta.xyz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+  <title data-translate="title-home">Pasta.xyz - Лучший чит клиент для Minecraft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css">
   <link rel="stylesheet" href="files/style.css">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <script src="files/lang.js"></script>
 </head>
 <body>
   <canvas id="particles"></canvas>
   <div class="background-overlay"></div>
   <div class="content-wrapper">
-    <nav>
+    <nav class="navbar">
       <div class="nav-logo">
-        <img src="logo.png" alt="logo">
-        <span>Pasta.xyz</span>
+        <img src="logo.png" alt="Pasta.xyz Logo">
+      </div>
+      <div class="language-dropdown">
+        <button class="language-toggle"><i class="fas fa-globe"></i> RU</button>
+        <div class="language-menu">
+          <a href="#" data-lang="ru"><i class="flag-icon flag-icon-ru"></i> RU</a>
+          <a href="#" data-lang="en"><i class="flag-icon flag-icon-gb"></i> EN</a>
+        </div>
       </div>
       <button class="nav-toggle"><i class="fas fa-bars"></i></button>
       <div class="nav-links">
-        <a href="#">Главная</a>
-        <a href="documents">Документы</a>
-        <a href="download">Скачать</a>
+        <a href="/"><i class="fas fa-home"></i> <span data-translate="nav-home">Главная</span></a>
+        <div class="dropdown">
+          <a href="documents" class="dropdown-toggle"><i class="fas fa-file-alt"></i> <span data-translate="nav-docs">Документы</span></a>
+          <div class="dropdown-menu">
+            <a href="documents#guide" data-translate="nav-guide">Руководство</a>
+            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
+          </div>
+        </div>
+        <a href="download"><i class="fas fa-download"></i> <span data-translate="nav-download">Скачать</span></a>
       </div>
     </nav>
+
     <section class="hero-section">
       <div class="hero-text">
         <h1>Pasta.xyz <span class="version"><i class="fas fa-cog"></i> v1.16.5</span></h1>
-        <p>Унижай противников и побеждай с командой только вместе с Pasta.xyz! Лучший клиент 1.16.5 который может обходить funtime, reallyworld, и другие сервера!</p>
+        <p data-translate="hero-description">Чит клиент для Minecraft с топовыми обводами, мощными модулями и удобным интерфейсом.</p>
         <div class="hero-buttons">
-          <a href="download.html" class="btn-primary"><i class="fa-solid fa-folder"></i> Скачать</a>
-          <a href="#features" class="btn-secondary scroll-link"><i class="fas fa-info-circle"></i> Функции</a>
+          <a href="download" class="btn-primary"><i class="fas fa-download"></i> <span data-translate="hero-download">Скачать</span></a>
+          <a href="#features" class="btn-secondary scroll-link"><i class="fas fa-info-circle"></i> <span data-translate="hero-features">Возможности</span></a>
         </div>
       </div>
       <div class="hero-logo">
-        <img src="logo.png" alt="Logo.xyz">
+        <img src="logo.png" alt="Pasta.xyz Logo">
       </div>
     </section>
 
     <section class="features-section" id="features">
-      <h2>Почему Pasta.xyz</h2>
-      <p>Вот, что делает нас лучшими</p>
+      <h2 data-translate="features-title">Почему Pasta.xyz?</h2>
+      <p data-translate="features-description">Всё, что нужно для доминирования на серверах!</p>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-eye"></i>
-          </div>
-          <h3>Стильный интерфейс</h3>
-          <p>Красивый интерфейс с возможностью смены формата ClickGUI</p>
+          <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+          <h3 data-translate="features-bypasses">Обходы</h3>
+          <p data-translate="features-bypasses-desc">Надёжные обходы топовых античитов.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fa-solid fa-gears"></i>
-          </div>
-          <h3>Легкая настройка</h3>
-          <p>Полная настройка клиента, визуалы, меню, функции и многое другое, а также рабочие бинды</p>
+          <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+          <h3 data-translate="features-modules">Модули</h3>
+          <p data-translate="features-modules-desc">Мощные модули для PvP и выживания.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fa-solid fa-gauge-simple-high"></i>
-          </div>
-          <h3>Сверхбыстрая работа</h3>
-          <p>Клиент не лагает даже на слабых компьютерах что позволяет играть даже на старых ноутах, или школьных компьютерах</p>
+          <div class="feature-icon"><i class="fas fa-eye"></i></div>
+          <h3 data-translate="features-visuals">Визуалы</h3>
+          <p data-translate="features-visuals-desc">Красивые HUD и ClickGUI.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-          <h3>Полная защита</h3>
-          <p>Наш лоадер и сам чит полностью безопасны, но и защищены так что ваш аккаунт никто не украдет просто так!</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fa-solid fa-globe"></i>
-          </div>
-          <h3>Авто-обновления</h3>
-          <p>Наш лоадер имеет авто-обновление по сети, так что переустанавливать лоадер ненадо</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fa-solid fa-computer"></i>
-          </div>
-          <h3>Легкость</h3>
-          <p>Наш лоадер сможет скачать наш клиент куда угодно, даже если майнкрафт там будет впервые!</p>
+          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 data-translate="features-security">Безопасность</h3>
+          <p data-translate="features-security-desc">Защита от банов и кражи аккаунта.</p>
         </div>
       </div>
     </section>
 
-    <section class="cheat-info">
-      <h2>Основные модули</h2>
-      <p>Лучшие функции в клиенте</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-icon"><i class="fa-solid fa-skull-crossbones"></i></div>
-          <div class="info-content">
+    <section class="modules-section">
+      <h2 data-translate="modules-title">Ключевые модули</h2>
+      <p data-translate="modules-description">Самые нужные функции для игры</p>
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-icon"><i class="fas fa-skull"></i></div>
+          <div class="module-content">
             <h3>KillAura</h3>
-            <p>Лучшая киллаура которая не миссает, и выглядит легитно</p>
+            <p data-translate="modules-killaura-desc">Мощная килаура с обходами античитов.</p>
           </div>
         </div>
-        <div class="info-card">
-          <div class="info-icon"><i class="fa-solid fa-eye"></i></div>
-          <div class="info-content">
+        <div class="module-card">
+          <div class="module-icon"><i class="fas fa-eye"></i></div>
+          <div class="module-content">
             <h3>Visuals</h3>
-            <p>Классные визуалы помогут скрасить ваш геймплей, и подметить врагов</p>
+            <p data-translate="modules-visuals-desc">Кастомные HUD и ClickGUI.</p>
           </div>
         </div>
-        <div class="info-card">
-          <div class="info-icon"><i class="fa-solid fa-person-running"></i></div>
-          <div class="info-content">
-            <h3>Speed & Flight</h3>
-            <p>Лучшие обходы спидхака и флая в нашем клиенте</p>
+        <div class="module-card">
+          <div class="module-icon"><i class="fas fa-bolt"></i></div>
+          <div class="module-content">
+            <h3>Speed & Fly</h3>
+            <p data-translate="modules-speedfly-desc">Быстрое перемещение с обходами.</p>
           </div>
         </div>
-        <div class="info-card">
-          <div class="info-icon"><i class="fa-solid fa-wheat-awn"></i></div>
-          <div class="info-content">
-            <h3>Farm</h3>
-            <p>Пускай клиент зарабатывает валюту за тебя, пока ты занят другим</p>
+        <div class="module-card">
+          <div class="module-icon"><i class="fas fa-leaf"></i></div>
+          <div class="module-content">
+            <h3>AutoFarm</h3>
+            <p data-translate="modules-autofarm-desc">Автоматизация фарма ресурсов.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="status-section">
-      <h2>Обходы серверов</h2>
-      <div class="status-grid">
-        <div class="status-card">
-          <i class="fas fa-server"></i>
-          <h3>ReallyWorld</h3>
-          <p>Обходит</p>
-        </div>
-        <div class="status-card">
-          <i class="fas fa-server"></i>
-          <h3>Funtime</h3>
-          <p>Обходит</p>
-        </div>
-        <div class="status-card">
-          <i class="fas fa-server"></i>
-          <h3>Spookytime</h3>
-          <p>Обходит</p>
-        </div>
-        <div class="status-card">
-          <i class="fas fa-server"></i>
-          <h3>Holyworld</h3>
-          <p>Неизвестно</p>
-        </div>
-        <div class="status-card">
-          <i class="fas fa-server"></i>
-          <h3>HvH</h3>
-          <p>Обходит</p>
-        </div>
+    <section class="menu-showcase">
+      <h2 data-translate="menu-title">Меню Pasta.xyz</h2>
+      <p data-translate="menu-description">Обходит сервера: FunTime, HolyWorld, ReallyWorld...</p>
+      <div class="menu-image">
+        <img src="menu.png" alt="Pasta.xyz Menu">
       </div>
     </section>
 
     <footer>
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img src="logo.png" alt="Логотип Pasta.xyz">
-          <span>Pasta.xyz</span>
+      <div class="footer-skew">
+        <div class="footer-content">
+          <div class="footer-main">
+            <h3>Pasta.xyz</h3>
+            <p data-translate="footer-description">Лучший чит-клиент для Minecraft с мощными функциями.</p>
+            <div class="footer-social">
+              <a href="https://discord.gg/9dMNYANZ"><i class="fab fa-discord"></i></a>
+              <a href="https://t.me/ewinnery"><i class="fab fa-telegram"></i></a>
+              <a href="https://www.youtube.com/@ZeroTiss"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4 data-translate="footer-navigation">Навигация</h4>
+            <a href="/" data-translate="nav-home">Главная</a>
+            <a href="documents" data-translate="nav-docs">Документы</a>
+            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
+            <a href="download" data-translate="nav-download">Скачать</a>
+          </div>
+          <div class="footer-community">
+            <h4 data-translate="footer-community">Сообщество</h4>
+            <div class="discord-widget">
+              <p data-translate="footer-discord-join">Присоединяйся к нашему Discord!</p>
+              <a href="https://discord.gg/9dMNYANZ" class="btn-secondary"><i class="fab fa-discord"></i> <span data-translate="footer-discord-button">Войти</span></a>
+            </div>
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="#">Главная</a>
-          <a href="documents">Документы</a>
-          <a href="download">Скачать</a>
-          <a href="#">Поддержка</a>
-        </div>
-        <div class="footer-social">
-          <a href="https://discord.gg/9dMNYANZ"><i class="fab fa-discord"></i></a>
-          <a href="https://t.me/zerotiss"><i class="fab fa-telegram"></i></a>
-          <a href="https://www.youtube.com/@ZeroTiss"><i class="fab fa-youtube"></i></a>
-        </div>
-        <div class="footer-text">
-          <p>© 2025 Pasta.xyz. Все права защищены.</p>
-          <p>Твой ключ к победе в Minecraft 1.16.5</p>
+        <div class="footer-bottom">
+          <p data-translate="footer-copyright">© 2025 Pasta.xyz. Все права защищены.</p>
+          <p class="credit">Website by <a href="https://t.me/ewinnery">@ewinnery</a></p>
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Кнопка переключения тем -->
   <button class="theme-toggle"><i class="fas fa-moon"></i></button>
-
   <script src="files/file.js"></script>
-  <script>
-    const toggleButton = document.querySelector('.theme-toggle');
-    const body = document.body;
-    let currentTheme = 0; // 0 - оригинальный темный, 1 - soft-dark, 2 - light
-
-    toggleButton.addEventListener('click', () => {
-      currentTheme = (currentTheme + 1) % 3; // Цикл между 0, 1, 2
-      const icon = toggleButton.querySelector('i');
-
-      if (currentTheme === 0) {
-        body.classList.remove('soft-dark', 'light');
-        icon.classList.remove('fa-sun', 'fa-adjust');
-        icon.classList.add('fa-moon');
-      } else if (currentTheme === 1) {
-        body.classList.remove('light');
-        body.classList.add('soft-dark');
-        icon.classList.remove('fa-moon', 'fa-sun');
-        icon.classList.add('fa-adjust');
-      } else {
-        body.classList.remove('soft-dark');
-        body.classList.add('light');
-        icon.classList.remove('fa-moon', 'fa-adjust');
-        icon.classList.add('fa-sun');
-      }
-    });
-
-    // Управление мобильным меню
-    document.querySelector('.nav-toggle').addEventListener('click', () => {
-      document.querySelector('.nav-links').classList.toggle('active');
-    });
-  </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92d06b651b01bcae',t:'MTc0NDEwMTIwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'931ca63e1a561d72',t:'MTc0NDkwMDUzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
 </html>

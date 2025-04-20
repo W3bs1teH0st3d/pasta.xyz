@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await registerUser(username, password);
             console.log('Результат регистрации:', result);
             if (result.success) {
-                window.location.href = '/userpanel.html';
+                window.location.href = '/userpanel';
             } else {
                 displayError(result.message);
             }
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await loginUser(username, password);
             console.log('Результат входа:', result);
             if (result.success) {
-                window.location.href = '/userpanel.html';
+                window.location.href = '/userpanel';
             } else {
                 displayError(result.message);
             }

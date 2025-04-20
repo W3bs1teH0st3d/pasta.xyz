@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; script-src 'self' https://*.supabase.co https://cdn.jsdelivr.net 'unsafe-inline'; connect-src 'self' https://ypfoeackdeyzkmrkytwz.supabase.co http://localhost:8888; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://*.googleapis.com https://*.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://cdnjs.cloudflare.com data:; object-src 'none';">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/login">
+  </noscript>
+  <title data-translate="title-userpanel">Pasta.xyz - Панель пользователя</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css">
+  <link rel="stylesheet" href="files/style.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="files/lang.js"></script>
+  <style>
+    #loading-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 24px;
+      font-family: 'Inter', sans-serif;
+    }
+    #content {
+      display: none;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #1d1e26;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      color: white;
+      font-family: 'Inter', sans-serif;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #e63946;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+    .modal-content p {
+      margin: 10px 0;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .form-group i {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #e63946;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px 10px 10px 35px;
+      border: 1px solid #3a3b4a;
+      border-radius: 4px;
+      background-color: #2a2b36;
+      color: white;
+      font-size: 16px;
+    }
+    .btn-primary {
+      width: 100%;
+      padding: 10px;
+      background-color: #e63946;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-primary:hover {
+      background-color: #cc333f;
+    }
+    .error-message {
+      margin-top: 10px;
+      color: #e63946;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-message">Loading your userpanel...<br>(Not loading? - maybe you not logged in account!)</div>
+  <canvas id="particles"></canvas>
+  <div class="background-overlay"></div>
+  <div class="content-wrapper" id="content">
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="logo.png" alt="Pasta.xyz Logo">
+      </div>
+      <div class="language-dropdown">
+        <button class="language-toggle"><i class="fas fa-globe"></i> RU</button>
+        <div class="language-menu">
+          <a href="#" data-lang="ru"><i class="flag-icon flag-icon-ru"></i> RU</a>
+          <a href="#" data-lang="en"><i class="flag-icon flag-icon-gb"></i> EN</a>
+        </div>
+      </div>
+      <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+      <div class="nav-links">
+        <a href="/"><i class="fas fa-home"></i> <span data-translate="nav-home">Главная</span></a>
+        <div class="dropdown">
+          <a href="documents" class="dropdown-toggle"><i class="fas fa-file-alt"></i> <span data-translate="nav-docs">Документы</span></a>
+          <div class="dropdown-menu">
+            <a href="documents#guide" data-translate="nav-guide">Руководство</a>
+            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
+          </div>
+        </div>
+        <a href="download"><i class="fas fa-download"></i> <span data-translate="nav-download">Скачать</span></a>
+        <a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> <span data-translate="nav-logout">Выйти</span></a>
+      </div>
+    </nav>
+
+    <section class="userpanel-section">
+      <div class="userpanel-container">
+        <h2 data-translate="userpanel-title">Личный кабинет</h2>
+        <div class="userpanel-content">
+          <div class="userpanel-info">
+            <div class="info-item">
+              <i class="fas fa-fingerprint"></i>
+              <span data-translate="userpanel-uid">UID</span>
+              <span id="user-uid"></span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-tag"></i>
+              <span data-translate="userpanel-username">Логин:</span>
+              <span id="user-username"></span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-hammer"></i>
+              <span data-translate="userpanel-access-level">Группа:</span>
+              <span id="user-access-level"></span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span data-translate="userpanel-created-at">Дата регистрации:</span>
+              <span id="user-created-at"></span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span data-translate="userpanel-last-login">Последний вход:</span>
+              <span id="user-last-login"></span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-microchip"></i>
+              <span data-translate="userpanel-hwid">HWID:</span>
+              <span id="user-hwid"></span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span data-translate="userpanel-expires">Клиент куплен до:</span>
+              <span id="user-expires"></span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-key"></i>
+              <span data-translate="userpanel-token">Активный ключ:</span>
+              <span id="user-token"></span>
+            </div>
+          </div>
+          <div class="userpanel-actions">
+            <button class="action-btn" id="fanpay-subscribe"><i class="fas fa-star"></i> <span data-translate="userpanel-subscribe">Купить</span></button>
+            <button class="action-btn" id="reset-hwid"><i class="fas fa-microchip"></i> <span data-translate="userpanel-reset-hwid">Сбросить HWID</span></button>
+            <button class="action-btn" id="activate-key"><i class="fas fa-key"></i> <span data-translate="userpanel-activate-key">Активировать ключ</span></button>
+          </div>
+        </div>
+        <div class="userpanel-footer">
+          <button class="footer-btn" id="download-launcher"><i class="fas fa-cloud-download-alt"></i> <span data-translate="userpanel-download-launcher">Скачать лаунчер</span></button>
+          <button class="footer-btn" id="discord"><i class="fab fa-discord"></i> <span data-translate="userpanel-discord">Беседа</span></button>
+        </div>
+        <div class="modal" id="key-activation-modal">
+          <div class="modal-content">
+            <span class="modal-close">×</span>
+            <h2 data-translate="modal-title">Активация ключа</h2>
+            <p data-translate="modal-format">Формат: XXXX-XXXX (HWID) или XXXX-XXXX-XXXX-XXXX (активация)</p>
+            <div class="form-group">
+              <i class="fas fa-key"></i>
+              <input type="text" id="key-input" placeholder="XXXX-XXXX или XXXX-XXXX-XXXX-XXXX" maxlength="19" required>
+            </div>
+            <button class="btn-primary" id="confirm-key"><span data-translate="modal-confirm">Подтвердить</span></button>
+            <p class="error-message" id="key-error"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-skew">
+        <div class="footer-content">
+          <div class="footer-main">
+            <h3>Pasta.xyz</h3>
+            <p data-translate="footer-description">Лучший чит-клиент для Minecraft с мощными функциями.</p>
+            <div class="footer-social">
+              <a href="https://discord.gg/9dMNYANZ"><i class="fab fa-discord"></i></a>
+              <a href="https://t.me/ewinnery"><i class="fab fa-telegram"></i></a>
+              <a href="https://www.youtube.com/@ZeroTiss"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4 data-translate="footer-navigation">Навигация</h4>
+            <a href="/" data-translate="nav-home">Главная</a>
+            <a href="documents" data-translate="nav-docs">Документы</a>
+            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
+            <a href="download" data-translate="nav-download">Скачать</a>
+          </div>
+          <div class="footer-community">
+            <h4 data-translate="footer-community">Сообщество</h4>
+            <div class="discord-widget">
+              <p data-translate="footer-discord-join">Присоединяйся к нашему Discord!</p>
+              <a href="https://discord.gg/9dMNYANZ" class="btn-secondary"><i class="fab fa-discord"></i> <span data-translate="footer-discord-button">Войти</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-translate="footer-copyright">© 2025 Pasta.xyz. Все права защищены.</p>
+          <p class="credit">Website by <a href="https://t.me/ewinnery">@ewinnery</a></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+  <script src="files/file.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="files/user.js"></script>
+  <script defer src="files/activate.js"></script>
+</body>
+</html>

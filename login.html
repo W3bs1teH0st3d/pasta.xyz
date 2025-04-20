@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; script-src 'self' https://*.supabase.co https://cdn.jsdelivr.net 'unsafe-inline'; connect-src 'self' https://ypfoeackdeyzkmrkytwz.supabase.co http://localhost:8888; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://*.googleapis.com https://*.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://cdnjs.cloudflare.com data:; object-src 'none';">
+  <title data-translate="title-login">Pasta.xyz - Вход</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css">
+  <link rel="stylesheet" href="files/style.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="files/lang.js"></script>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div class="background-overlay"></div>
+  <div class="content-wrapper">
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="logo.png" alt="Pasta.xyz Logo">
+      </div>
+      <div class="language-dropdown">
+        <button class="language-toggle"><i class="fas fa-globe"></i> RU</button>
+        <div class="language-menu">
+          <a href="#" data-lang="ru"><i class="flag-icon flag-icon-ru"></i> RU</a>
+          <a href="#" data-lang="en"><i class="flag-icon flag-icon-gb"></i> EN</a>
+        </div>
+      </div>
+      <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+      <div class="nav-links">
+        <a href="/"><i class="fas fa-home"></i> <span data-translate="nav-home">Главная</span></a>
+        <div class="dropdown">
+          <a href="documents" class="dropdown-toggle"><i class="fas fa-file-alt"></i> <span data-translate="nav-docs">Документы</span></a>
+          <div class="dropdown-menu">
+            <a href="documents#guide" data-translate="nav-guide">Руководство</a>
+            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
+          </div>
+        </div>
+        <a href="download"><i class="fas fa-download"></i> <span data-translate="nav-download">Скачать</span></a>
+        <a href="register"><i class="fas fa-user-plus"></i> <span data-translate="nav-register">Регистрация</span></a>
+      </div>
+    </nav>
+
+    <section class="auth-section">
+      <div class="auth-container">
+        <h2 data-translate="login-title">Вход в аккаунт</h2>
+        <p data-translate="login-description">Войдите чтобы получить доступ к клиенту и многому другому</p>
+        <div class="auth-form">
+          <div class="form-group">
+            <label for="username" data-translate="login-username">Username</label>
+            <input type="text" id="username" placeholder="Username" required>
+          </div>
+          <div class="form-group">
+            <label for="password" data-translate="login-password">Password</label>
+            <input type="password" id="password" placeholder="Password" required>
+          </div>
+          <button class="btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i> <span data-translate="login-button">Войти</span></button>
+          <p class="auth-link"><a href="register" data-translate="login-register-link">Нет аккаунта? Зарегистрироваться</a></p>
+          <p id="error-message" class="error-message"></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-skew">
+        <div class="footer-content">
+          <div class="footer-main">
+            <h3>Pasta.xyz</h3>
+            <p data-translate="footer-description">Лучший чит-клиент для Minecraft с мощными функциями.</p>
+            <div class="footer-social">
+              <a href="https://discord.gg/9dMNYANZ"><i class="fab fa-discord"></i></a>
+              <a href="https://t.me/ewinnery"><i class="fab fa-telegram"></i></a>
+              <a href="https://www.youtube.com/@ZeroTiss"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4 data-translate="footer-navigation">Навигация</h4>
+            <a href="/" data-translate="nav-home">Главная</a>
+            <a href="documents" data-translate="nav-docs">Документы</a>
+            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
+            <a href="download" data-translate="nav-download">Скачать</a>
+          </div>
+          <div class="footer-community">
+            <h4 data-translate="footer-community">Сообщество</h4>
+            <div class="discord-widget">
+              <p data-translate="footer-discord-join">Присоединяйся к нашему Discord!</p>
+              <a href="https://discord.gg/9dMNYANZ" class="btn-secondary"><i class="fab fa-discord"></i> <span data-translate="footer-discord-button">Войти</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-translate="footer-copyright">© 2025 Pasta.xyz. Все права защищены.</p>
+          <p class="credit">Website by <a href="https://t.me/ewinnery">@ewinnery</a></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+  <script src="files/file.js"></script>
+  <script src="files/log.js"></script>
+</body>
+</html>

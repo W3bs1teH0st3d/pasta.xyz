@@ -59,7 +59,7 @@ function logout() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    if (!window.location.pathname.includes('userpanel.html')) return;
+    if (!window.location.pathname.includes('userpanel')) return;
 
     const loadingMessage = document.getElementById('loading-message');
     const content = document.getElementById('content');

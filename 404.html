@@ -1,96 +1,114 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-translate="title-404">Pasta.xyz - Страница не найдена</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css">
-  <link rel="stylesheet" href="files/style.css">
-  <link rel="icon" href="favicon.png" type="image/png">
-  <script src="files/lang.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasta.xyz</title>
+    <link rel="shortcut icon" href="files/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        :root {
+            --primary-color: #FF4848 !important;
+            --secondary-color: #181818 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/file.js" defer></script>
+    <script src="js/log.js" defer></script>
 </head>
 <body>
-  <canvas id="particles"></canvas>
-  <div class="background-overlay"></div>
-  <div class="content-wrapper">
-    <nav class="navbar">
-      <div class="nav-logo">
-        <img src="logo.png" alt="Pasta.xyz Logo">
-      </div>
-      <div class="language-dropdown">
-        <button class="language-toggle"><i class="fas fa-globe"></i> RU</button>
-        <div class="language-menu">
-          <a href="#" data-lang="ru"><i class="flag-icon flag-icon-ru"></i> RU</a>
-          <a href="#" data-lang="en"><i class="flag-icon flag-icon-gb"></i> EN</a>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/#" class="logo">
+                <img src="files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                <span>Pasta.xyz</span><span class="version">Alpha</span>
+            </a>
         </div>
-      </div>
-      <button class="nav-toggle"><i class="fas fa-bars"></i></button>
-      <div class="nav-links">
-        <a href="/"><i class="fas fa-home"></i> <span data-translate="nav-home">Главная</span></a>
-        <div class="dropdown">
-          <a href="documents" class="dropdown-toggle"><i class="fas fa-file-alt"></i> <span data-translate="nav-docs">Документы</span></a>
-          <div class="dropdown-menu">
-            <a href="documents#guide" data-translate="nav-guide">Руководство</a>
-            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
-          </div>
+        
+        <div class="navbar-right">
+            <nav class="nav-links">
+                <a href="https://t.me/pastaxyz" class="nav-link scroll-link">
+                    <img src="assets/support.svg" class="logo-img">
+                    <span>Поддержка</span>
+                </a>
+                <a href="shop" class="nav-link">
+                    <img src="assets/cart.svg" class="logo-img">
+                    <span>Купить</span>
+                </a>
+                <a href="auth" class="button-primary">
+                    <img src="assets/auth.svg" class="logo-img">
+                    <span>Авторизация</span>
+                </a>
+            </nav>
         </div>
-        <a href="download"><i class="fas fa-download"></i> <span data-translate="nav-download">Скачать</span></a>
-        <a href="register"><i class="fas fa-user-plus"></i> <span data-translate="nav-register">Регистрация</span></a>
-      </div>
-    </nav>
+    </header>
 
-    <section class="error-section">
-      <div class="error-content">
-        <div class="error-text">
-          <h1>404</h1>
-          <h2 data-translate="error-404-title">Ой, страница потерялась!</h2>
-          <p data-translate="error-404-description">К сожалению, страница, которую вы ищете, не существует или была перемещена.</p>
-          <a href="/" class="btn-primary"><i class="fas fa-home"></i> <span data-translate="error-back-home">Вернуться на главную</span></a>
-        </div>
-        <div class="error-logo">
-          <img src="logo.png" alt="Pasta.xyz Logo">
-        </div>
-      </div>
-    </section>
+    <main class="main-content">
+        <div class="hero-section">
+            <h1>404 - Страница не найдена</h1>
+            <p class="hero-description">
+                Упс, похоже ты зашел на страницу которой нет, ну или<br>
+                у тебя нет доступа на ее просмотр, советую вернутся обратно
+            </p>
+            <div class="hero-buttons">
+                <a class="button-primary" href="/">
+                    <img src="assets/home.svg" class="logo-img">
+                    <span>На главную</span>
+                </a>
+                <a href="https://discord.gg/Xqyd6NJB5X" class="button-secondary scroll-link">
+                    <img src="assets/support.svg" class="logo-img">
+                    <span>Дискорд</span>
+                </a>
+            </div>
+    </main>
 
-    <footer>
-      <div class="footer-skew">
-        <div class="footer-content">
-          <div class="footer-main">
-            <h3>Pasta.xyz</h3>
-            <p data-translate="footer-description">Лучший чит-клиент для Minecraft с мощными функциями.</p>
-            <div class="footer-social">
-              <a href="https://discord.gg/9dMNYANZ"><i class="fab fa-discord"></i></a>
-              <a href="https://t.me/ewinnery"><i class="fab fa-telegram"></i></a>
-              <a href="https://www.youtube.com/@ZeroTiss"><i class="fab fa-youtube"></i></a>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column footer-column--logo">
+                <a href="/#" class="logo scroll-link">
+                    <img src="/files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                    <span class="version">Alpha</span>
+                </a>
+                <p class="footer-copyright">© Pasta.xyz, 2025</p>
             </div>
-          </div>
-          <div class="footer-links">
-            <h4 data-translate="footer-navigation">Навигация</h4>
-            <a href="/" data-translate="nav-home">Главная</a>
-            <a href="documents" data-translate="nav-docs">Документы</a>
-            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
-            <a href="download" data-translate="nav-download">Скачать</a>
-          </div>
-          <div class="footer-community">
-            <h4 data-translate="footer-community">Сообщество</h4>
-            <div class="discord-widget">
-              <p data-translate="footer-discord-join">Присоединяйся к нашему Discord!</p>
-              <a href="https://discord.gg/9dMNYANZ" class="btn-secondary"><i class="fab fa-discord"></i> <span data-translate="footer-discord-button">Войти</span></a>
+    
+            <div class="footer-column footer-column--socials">
+                <h4>Социальные сети</h4>
+                <ul class="footer-links">
+                    <li><a href="https://t.me/pastaxyz" class="footer-link">Telegram</a></li>
+                    <li><a href="https://dsc.gg/pastaclient" class="footer-link">Discord</a></li>
+                    <li><a href="#" class="footer-link">YouTube</a></li>
+                    <li><a href="#" class="footer-link">ВКонтакте</a></li>
+                </ul>
             </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p data-translate="footer-copyright">© 2025 Pasta.xyz. Все права защищены.</p>
-          <p class="credit">Website by <a href="https://t.me/ewinnery">@ewinnery</a></p>
-        </div>
-      </div>
     </footer>
-  </div>
 
-  <button class="theme-toggle"><i class="fas fa-moon"></i></button>
-  <script src="files/file.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const photos = [
+            "/files/screenshots/1.png",
+            "/files/screenshots/2.png",
+            "/files/screenshots/3.png"
+        ];
+        const sliderImage = document.getElementById("slider-image");
+        let currentIndex = 0;
+
+        function changeImage() {
+            sliderImage.classList.remove("active");
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % photos.length;
+                sliderImage.src = photos[currentIndex];
+                setTimeout(() => {
+                    sliderImage.classList.add("active");
+                }, 50); 
+            }, 600); 
+        }
+
+        sliderImage.classList.add("active"); 
+        setInterval(changeImage, 4000); 
+    </script>
 </body>
 </html>

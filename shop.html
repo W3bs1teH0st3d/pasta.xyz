@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Toffi Client</title>
+        <link rel="shortcut icon" href="/files/logo.svg" type="image/x-icon">
+        <link rel="stylesheet" href="css/shared.css">
+        <style>
+            :root {
+                --primary-color: #FF4848 !important;
+                --secondary-color: #181818 !important;
+            }
+            /* Center the modal */
+            .modal {
+                position: fixed;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .modal-content {
+                position: relative;
+                max-width: 600px;
+                width: 90%;
+                margin: 0;
+                background: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+        </style>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header class="navbar">
+            <div class="navbar-left">
+                <a href="/#" class="logo">
+                    <img src="files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                    <span>Pasta.xyz</span><span class="version">Alpha</span>
+                </a>
+            </div>
+            
+            <div class="navbar-right">
+                <nav class="nav-links">
+                    <a href="https://t.me/pastaxyz" class="nav-link scroll-link">
+                        <img src="assets/support.svg" class="logo-img">
+                        <span>Поддержка</span>
+                    </a>
+                    <a href="shop" class="nav-link">
+                        <img src="assets/cart.svg" class="logo-img">
+                        <span>Купить</span>
+                    </a>
+                    <a href="auth" class="button-primary">
+                        <img src="assets/auth.svg" class="logo-img">
+                        <span>Авторизация</span>
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+    <main class="shop-section">
+        <div class="shop-container">
+            <div class="shop-header">
+                <h2>Наши услуги</h2>
+                <p class="shop-description">Выберите товар, а далее оплатите его через FunPay</p>
+            </div>
+            <div class="shop-grid">
+                <div class="shop-card">
+                    <div class="shop-image-placeholder"><img src="/files/logo.svg" alt="Toffi Client"></div>
+                    <h3>7 дней</h3>
+                    <p class="shop-price">
+                        <span>Цена 150 ₽</span>
+                    </p>
+                    <button class="button-primary shop-button" data-id="21" data-name="7 дней" data-price="150" data-funpaylink="https://funpay.com/lots/offer?id=41001779">
+                        Приобрести
+                    </button>
+                </div>
+                <div class="shop-card">
+                    <div class="shop-image-placeholder"><img src="/files/logo.svg" alt="Toffi Client"></div>
+                    <h3>14 дней</h3>
+                    <p class="shop-price">
+                        <span>Цена 240 ₽</span>
+                    </p>
+                    <button class="button-primary shop-button" data-id="22" data-name="14 дней" data-price="240" data-funpaylink="https://funpay.com/lots/offer?id=41002010">
+                        Приобрести
+                    </button>
+                </div>
+                <div class="shop-card">
+                    <div class="shop-image-placeholder"><img src="/files/logo.svg" alt="Toffi Client"></div>
+                    <h3>30 дней</h3>
+                    <p class="shop-price">
+                        <span>Цена 420 ₽</span>
+                    </p>
+                    <button class="button-primary shop-button" data-id="17" data-name="30 дней" data-price="420" data-funpaylink="https://funpay.com/lots/offer?id=41001852">
+                        Приобрести
+                    </button>
+                </div>
+                <div class="shop-card">
+                    <div class="shop-image-placeholder"><img src="/files/logo.svg" alt="Toffi Client"></div>
+                    <h3>Сброс HWID</h3>
+                    <p class="shop-price">
+                        <span>Цена 81 ₽</span>
+                    </p>
+                    <button class="button-primary shop-button" data-id="20" data-name="Сброс HWID" data-price="81" data-funpaylink="https://funpay.com/lots/offer?id=41230410">
+                        Приобрести
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            <div class="modal-header">
+                <h3>Выберите товар / Способ оплаты</h3>
+            </div>
+            <div class="modal-body">
+                <div class="modal-product-info">
+                    <div class="shop-image-placeholder"><img src="/files/logo.svg" alt="Toffi Client"></div>
+                    <div class="modal-product-details">
+                        <h4 id="modalProductName"></h4>
+                        <p id="modalProductPrice"></p>
+                        <div class="promo-code">
+                            <input type="text" placeholder="Промокод" id="promoCodeInput">
+                            <button class="button-secondary promo-code-button">Активировать промокод</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <label class="payment-label">Способ оплаты</label>
+                    <div class="custom-select">
+                        <div class="custom-select-trigger">
+                            <span>FunPay</span>
+                            <svg class="dropdown-arrow" fill="rgba(255, 255, 255, 0.7)" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                        <div class="custom-options">
+                            <div class="custom-option selected" data-value="funpay">
+                                <span>FunPay</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button-primary modal-continue" disabled>Продолжить</button>
+                <a href="#" class="button-secondary modal-fupay">Оплатить через FUNPAY</a>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column footer-column--logo">
+                <a href="/#" class="logo scroll-link">
+                    <img src="/files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                    <span class="version">Alpha</span>
+                </a>
+                <p class="footer-copyright">© Pasta.xyz, 2025</p>
+            </div>
+    
+            <div class="footer-column footer-column--socials">
+                <h4>Социальные сети</h4>
+                <ul class="footer-links">
+                    <li><a href="https://t.me/pastaxyz" class="footer-link">Telegram</a></li>
+                    <li><a href="https://dsc.gg/pastaclient" class="footer-link">Discord</a></li>
+                    <li><a href="#" class="footer-link">YouTube</a></li>
+                    <li><a href="#" class="footer-link">ВКонтакте</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+    <script>
+        // Patch for main.js to prevent postMessage errors
+        (function() {
+            // Check if the page is in an iframe
+            const isInIframe = window.parent !== window && typeof window.parent.postMessage === 'function';
+
+            // Override mouse event listeners
+            const originalAddEventListener = document.addEventListener;
+            document.addEventListener = function(type, listener, options) {
+                if (['mousedown', 'mousemove', 'mouseup'].includes(type)) {
+                    const wrappedListener = function(event) {
+                        if (isInIframe) {
+                            // Only call postMessage in iframe context
+                            listener(event);
+                        } else {
+                            // Simulate minimal drag behavior without postMessage
+                            if (type === 'mousedown') {
+                                window.isDragging = true;
+                                window.startX = event.clientX;
+                                window.startY = event.clientY;
+                            } else if (type === 'mousemove' && window.isDragging) {
+                                // Update coordinates but skip postMessage
+                                window.startX = event.clientX;
+                                window.startY = event.clientY;
+                            } else if (type === 'mouseup') {
+                                window.isDragging = false;
+                            }
+                        }
+                    };
+                    originalAddEventListener.call(document, type, wrappedListener, options);
+                } else {
+                    originalAddEventListener.call(document, type, listener, options);
+                }
+            };
+
+            // Override touch event listeners
+            document.addEventListener('touchstart', function(event) {
+                if (isInIframe) {
+                    // Original behavior in iframe
+                    window.isDragging = true;
+                    window.startX = event.touches[0].clientX;
+                    window.startY = event.touches[0].clientY;
+                    if (window.parent && window.parent.postMessage) {
+                        window.parent.postMessage(JSON.stringify({
+                            type: 'drag_start',
+                            x: window.startX,
+                            y: window.startY
+                        }), '*');
+                    }
+                } else {
+                    // Minimal behavior outside iframe
+                    window.isDragging = true;
+                    window.startX = event.touches[0].clientX;
+                    window.startY = event.touches[0].clientY;
+                }
+            }, { passive: false });
+
+            document.addEventListener('touchmove', function(event) {
+                if (window.isDragging) {
+                    if (isInIframe) {
+                        const deltaX = event.touches[0].clientX - window.startX;
+                        const deltaY = event.touches[0].clientY - window.startY;
+                        if (window.parent && window.parent.postMessage) {
+                            window.parent.postMessage(JSON.stringify({
+                                type: 'drag_move',
+                                deltaX: deltaX,
+                                deltaY: deltaY
+                            }), '*');
+                        }
+                        window.startX = event.touches[0].clientX;
+                        window.startY = event.touches[0].clientY;
+                    } else {
+                        // Update coordinates without postMessage
+                        window.startX = event.touches[0].clientX;
+                        window.startY = event.touches[0].clientY;
+                    }
+                }
+            }, { passive: false });
+
+            document.addEventListener('touchend', function() {
+                if (window.isDragging) {
+                    window.isDragging = false;
+                    if (isInIframe && window.parent && window.parent.postMessage) {
+                        window.parent.postMessage(JSON.stringify({
+                            type: 'drag_end'
+                        }), '*');
+                    }
+                }
+            }, { passive: false });
+        })();
+    </script>
+</body>
+</html>

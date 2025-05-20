@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasta.xyz</title>
+    <link rel="shortcut icon" href="/files/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-color: #FF4848 !important;
+            --secondary-color: #181818 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/log.js" defer></script>
+    <script src="js/user.js" defer></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/#" class="logo">
+                <img src="files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                <span>Pasta.xyz</span><span class="version">Alpha</span>
+            </a>
+        </div>
+        
+        <div class="navbar-right">
+            <nav class="nav-links">
+                <a href="https://t.me/pastaxyz" class="nav-link scroll-link">
+                    <img src="assets/support.svg" class="logo-img">
+                    <span>Поддержка</span>
+                </a>
+                <a href="shop" class="nav-link">
+                    <img src="assets/cart.svg" class="logo-img">
+                    <span>Купить</span>
+                </a>
+                <a href="auth" class="button-primary">
+                    <img src="assets/auth.svg" class="logo-img">
+                    <span>Авторизация</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content">
+        <main class="profile-section">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img id="user-avatar" src="assets/avatar-placeholder.png" alt="Avatar" class="avatar-img">
+                    </div>
+                    <div class="profile-background">
+                        <div class="background-blur"></div>
+                        <div class="background-overlay"></div>
+                    </div>
+                </div>
+                <h2>Настройки аккаунта</h2>
+                <div class="profile-info">
+                    <div class="info-row">
+                        <span class="info-label">UID:</span>
+                        <span class="info-value" id="user-uid"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Логин:</span>
+                        <span class="info-value" id="user-username"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Группа:</span>
+                        <span class="info-value" id="user-access-level"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Дата регистрации:</span>
+                        <span class="info-value" id="user-created-at"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Последний вход:</span>
+                        <span class="info-value" id="user-last-login"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">HWID:</span>
+                        <span class="info-value" id="user-hwid"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Клиент куплен до:</span>
+                        <span class="info-value" id="user-expires"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Активный ключ:</span>
+                        <span class="info-value" id="user-token"></span>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="button-primary" id="fanpay-subscribe">Купить</button>
+                    <button class="button-primary" id="open-key-modal">Ключ [SOON]</button>
+                    <button class="button-primary" id="open-ram-modal">RAM [SOON]</button>
+                    <a href="https://github.com/W3bs1teH0st3d/Pasta.client/releases/download/V1.7Optimize/PastaLoader.exe" class="button-primary" id="download-launcher">Скачать лаунчер</a>
+                    <a href="https://dsc.gg/pastaclient" class="button-primary" id="discord">Беседа</a>
+                    <button class="button-logout" id="logout">Выйти</button>
+                </div>
+            </div>
+
+            <div class="modal" id="keyModal">
+                <div class="modal-content">
+                    <button class="modal-close">×</button>
+                    <div class="modal-header">
+                        <h3>Активация ключа</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="key-input" class="payment-label">Ключ (Формат: XXXX-XXXX или XXXX-XXXX-XXXX-XXXX)</label>
+                            <input type="text" id="key-input" placeholder="Введите ключ">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button-primary modal-continue" id="activate-key-btn">Подтвердить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="ramModal">
+                <div class="modal-content">
+                    <button class="modal-close">×</button>
+                    <div class="modal-header">
+                        <h3>Установить RAM</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="ram-input" class="payment-label">Объём RAM (в мегабайтах)</label>
+                            <input type="number" id="ram-input" placeholder="Введите объём RAM (например, 4096)" min="512" step="512">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button-primary modal-continue" id="set-ram-btn">Установить</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column footer-column--logo">
+                <a href="/#" class="logo scroll-link">
+                    <img src="/files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                    <span class="version">Alpha</span>
+                </a>
+                <p class="footer-copyright">© Pasta.xyz, 2025</p>
+            </div>
+    
+            <div class="footer-column footer-column--socials">
+                <h4>Социальные сети</h4>
+                <ul class="footer-links">
+                    <li><a href="https://t.me/pastaxyz" class="footer-link">Telegram</a></li>
+                    <li><a href="https://dsc.gg/pastaclient" class="footer-link">Discord</a></li>
+                    <li><a href="#" class="footer-link">YouTube</a></li>
+                    <li><a href="#" class="footer-link">ВКонтакте</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const avatarImg = document.querySelector('.avatar-img');
+            const backgroundBlur = document.querySelector('.profile-background');
+    
+            if (avatarImg && backgroundBlur) {
+                const imgSrc = avatarImg.src;
+                backgroundBlur.style.backgroundImage = `url(${imgSrc})`;
+            }
+        });
+    </script>
+</body>
+</html>

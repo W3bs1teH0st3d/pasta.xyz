@@ -1,167 +1,215 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-translate="title-home">Pasta.xyz - Лучший чит клиент для Minecraft</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css">
-  <link rel="stylesheet" href="files/style.css">
-  <link rel="icon" href="favicon.png" type="image/png">
-  <script src="files/lang.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasta.xyz</title>
+    <link rel="shortcut icon" href="files/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        :root {
+            --primary-color: #FF4848 !important;
+            --secondary-color: #181818 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/file.js" defer></script>
+    <script src="js/log.js" defer></script>
 </head>
 <body>
-  <canvas id="particles"></canvas>
-  <div class="background-overlay"></div>
-  <div class="content-wrapper">
-    <nav class="navbar">
-      <div class="nav-logo">
-        <img src="logo.png" alt="Pasta.xyz Logo">
-      </div>
-      <div class="language-dropdown">
-        <button class="language-toggle"><i class="fas fa-globe"></i> RU</button>
-        <div class="language-menu">
-          <a href="#" data-lang="ru"><i class="flag-icon flag-icon-ru"></i> RU</a>
-          <a href="#" data-lang="en"><i class="flag-icon flag-icon-gb"></i> EN</a>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/#" class="logo">
+                <img src="files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                <span>Pasta.xyz</span><span class="version">Alpha</span>
+            </a>
         </div>
-      </div>
-      <button class="nav-toggle"><i class="fas fa-bars"></i></button>
-      <div class="nav-links">
-        <a href="/"><i class="fas fa-home"></i> <span data-translate="nav-home">Главная</span></a>
-        <div class="dropdown">
-          <a href="documents" class="dropdown-toggle"><i class="fas fa-file-alt"></i> <span data-translate="nav-docs">Документы</span></a>
-          <div class="dropdown-menu">
-            <a href="documents#guide" data-translate="nav-guide">Руководство</a>
-            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
-          </div>
+        
+        <div class="navbar-right">
+            <nav class="nav-links">
+                <a href="https://t.me/pastaxyz" class="nav-link scroll-link">
+                    <img src="assets/support.svg" class="logo-img">
+                    <span>Поддержка</span>
+                </a>
+                <a href="shop" class="nav-link">
+                    <img src="assets/cart.svg" class="logo-img">
+                    <span>Купить</span>
+                </a>
+                <a href="auth" class="button-primary">
+                    <img src="assets/auth.svg" class="logo-img">
+                    <span>Авторизация</span>
+                </a>
+            </nav>
         </div>
-        <a href="download"><i class="fas fa-download"></i> <span data-translate="nav-download">Скачать</span></a>
-        <a href="register"><i class="fas fa-user-plus"></i> <span data-translate="nav-register">Регистрация</span></a>
-      </div>
-    </nav>
+    </header>
 
-    <section class="hero-section">
-      <div class="hero-text">
-        <h1>Pasta.xyz <span class="version"><i class="fas fa-cog"></i> v1.16.5</span></h1>
-        <p data-translate="hero-description">Чит клиент для Minecraft с топовыми обходами, мощными модулями и удобным интерфейсом, который предоставит максимальное удовольствие от игры</p>
-        <div class="hero-buttons">
-          <a href="download" class="btn-primary"><i class="fas fa-download"></i> <span data-translate="hero-download">Скачать</span></a>
-          <a href="#features" class="btn-secondary scroll-link"><i class="fas fa-info-circle"></i> <span data-translate="hero-features">Возможности</span></a>
-        </div>
-      </div>
-      <div class="hero-logo">
-        <img src="logo.png" alt="Pasta.xyz Logo">
-      </div>
-    </section>
-
-    <section class="features-section" id="features">
-      <h2 data-translate="features-title">Почему Pasta.xyz?</h2>
-      <p data-translate="features-description">Всё, что нужно для доминирования на серверах!</p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-          <h3 data-translate="features-bypasses">Обходы</h3>
-          <p data-translate="features-bypasses-desc">Надёжные обходы топовых античитов.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-cogs"></i></div>
-          <h3 data-translate="features-modules">Модули</h3>
-          <p data-translate="features-modules-desc">Мощные модули для PvP и выживания.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-eye"></i></div>
-          <h3 data-translate="features-visuals">Визуалы</h3>
-          <p data-translate="features-visuals-desc">Красивые HUD и ClickGUI.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3 data-translate="features-security">Безопасность</h3>
-          <p data-translate="features-security-desc">Защита от банов и кражи аккаунта.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="modules-section">
-      <h2 data-translate="modules-title">Ключевые модули</h2>
-      <p data-translate="modules-description">Самые нужные функции для игры</p>
-      <div class="modules-grid">
-        <div class="module-card">
-          <div class="module-icon"><i class="fas fa-skull"></i></div>
-          <div class="module-content">
-            <h3>KillAura</h3>
-            <p data-translate="modules-killaura-desc">Мощная килаура с обходами античитов.</p>
-          </div>
-        </div>
-        <div class="module-card">
-          <div class="module-icon"><i class="fas fa-eye"></i></div>
-          <div class="module-content">
-            <h3>Visuals</h3>
-            <p data-translate="modules-visuals-desc">Кастомные HUD и ClickGUI.</p>
-          </div>
-        </div>
-        <div class="module-card">
-          <div class="module-icon"><i class="fas fa-bolt"></i></div>
-          <div class="module-content">
-            <h3>Speed & Fly</h3>
-            <p data-translate="modules-speedfly-desc">Быстрое перемещение с обходами.</p>
-          </div>
-        </div>
-        <div class="module-card">
-          <div class="module-icon"><i class="fas fa-leaf"></i></div>
-          <div class="module-content">
-            <h3>AutoFarm</h3>
-            <p data-translate="modules-autofarm-desc">Автоматизация фарма ресурсов.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="menu-showcase">
-      <h2 data-translate="menu-title">Меню Pasta.xyz</h2>
-      <p data-translate="menu-description">Обходит сервера: FunTime, HolyWorld, ReallyWorld...</p>
-      <div class="menu-image">
-        <img src="menu.png" alt="Pasta.xyz Menu">
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-skew">
-        <div class="footer-content">
-          <div class="footer-main">
-            <h3>Pasta.xyz</h3>
-            <p data-translate="footer-description">Лучший чит-клиент для Minecraft с мощными функциями.</p>
-            <div class="footer-social">
-              <a href="https://discord.gg/9dMNYANZ"><i class="fab fa-discord"></i></a>
-              <a href="https://t.me/ewinnery"><i class="fab fa-telegram"></i></a>
-              <a href="https://www.youtube.com/@ZeroTiss"><i class="fab fa-youtube"></i></a>
+    <main class="main-content">
+        <div class="hero-section">
+            <h1>Pasta.xyz - Клиент...</h1>
+            <p class="hero-description">
+                Клиент, который обеспечит максимально комфортные условия для<br>
+                игры и подарит вам незабываемые впечатления от игры.
+            </p>
+            <div class="hero-buttons">
+                <a class="button-primary" href="/shop">
+                    <img src="assets/cart.svg" class="logo-img">
+                    <span>Купить</span>
+                </a>
+                <a href="https://discord.gg/Xqyd6NJB5X" class="button-secondary scroll-link">
+                    <img src="assets/palka.svg" class="logo-img">
+                    <span>Подробнее</span>
+                </a>
             </div>
-          </div>
-          <div class="footer-links">
-            <h4 data-translate="footer-navigation">Навигация</h4>
-            <a href="/" data-translate="nav-home">Главная</a>
-            <a href="documents" data-translate="nav-docs">Документы</a>
-            <a href="changelog" data-translate="nav-changelog">Чейнджлог</a>
-            <a href="download" data-translate="nav-download">Скачать</a>
-          </div>
-          <div class="footer-community">
-            <h4 data-translate="footer-community">Сообщество</h4>
-            <div class="discord-widget">
-              <p data-translate="footer-discord-join">Присоединяйся к нашему Discord!</p>
-              <a href="https://discord.gg/9dMNYANZ" class="btn-secondary"><i class="fab fa-discord"></i> <span data-translate="footer-discord-button">Войти</span></a>
+            <div class="features-preview">
+                <div class="screenshots-slider">
+                    <div class="screenshots-swaper">
+                        <span>
+                            <img id="slider-image" src="/files/screenshots/1.png" alt="screenshot">
+                        </span>
+                    </div>
+                    <div class="progress-bars">
+                        <div class="progress-bar" id="progress-bar-0"></div>
+                        <div class="progress-bar" id="progress-bar-1"></div>
+                        <div class="progress-bar" id="progress-bar-2"></div>
+                    </div>
+                </div>
+                <button class="scroll-down-button scroll-link" data-target="#why-us">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5L12 19M12 19L19 12M12 19L5 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
-          </div>
         </div>
-        <div class="footer-bottom">
-          <p data-translate="footer-copyright">© 2025 Pasta.xyz. Все права защищены.</p>
-          <p class="credit">Website by <a href="https://t.me/ewinnery">@ewinnery</a></p>
-        </div>
-      </div>
+
+        <section id="why-us" class="why-us">
+            <div class="why-us-header">
+                <h2>Почему наш клиент?</h2>
+                <p class="subtitle">После покупки подписки на наш клиент, вы получите такие функции...</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="features-row features-row--first">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h3>Очень красивые визуалы <span class="emoji">🌌</span></h3>
+                        </div>
+                        <p>В нашем клиенте ты можешь гибко настроить визуалы</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h3>Приятная цена <span class="emoji">💎</span></h3>
+                        </div>
+                        <p>Наш клиент дает возможность играть даже тем у кого мало денег, что является отличным показателем, ведь за такую цену это отличный чит</p>
+                    </div>
+                </div>
+                <div class="features-row features-row--second">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h3>Частые обновления <span class="emoji">🔄️</span></h3>
+                        </div>
+                        <p>Наш кодер постоянно обновляет клиенты, пытаясь всегда быть на топе обходов</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h3>Лучшая поддержка <span class="emoji">😎</span></h3>
+                        </div>
+                        <p>Наша поддержка - крутые люди разберающиеся что не так у вас в клиенте</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <h3>Оптимизация <span class="emoji">⚙️</span></h3>
+                        </div>
+                        <p>Наш клиент имеет хорошую оптимизацию как для слабых, так и мощных пк</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <div class="demo-header">
+                <h2>Демонстрация клиента</h2>
+                <p class="subtitle">Ниже представлен краткий фрагмент геймплея с участием нашего клиента.</p>
+            </div>
+
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/2fvMAT9JcH0"
+                    title="Демонстрация клиента"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <p class="video-caption"></p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">Пользователей</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">45</div>
+                    <div class="stat-label">Запусков<br>клиента</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Обновлений<br>вышло</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">25</div>
+                    <div class="stat-label">Дней<br>с открытия</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column footer-column--logo">
+                <a href="/#" class="logo scroll-link">
+                    <img src="/files/logo.svg" alt="Pasta.xyz" class="logo-img">
+                    <span class="version">Alpha</span>
+                </a>
+                <p class="footer-copyright">© Pasta.xyz, 2025</p>
+            </div>
+    
+            <div class="footer-column footer-column--socials">
+                <h4>Социальные сети</h4>
+                <ul class="footer-links">
+                    <li><a href="https://t.me/pastaxyz" class="footer-link">Telegram</a></li>
+                    <li><a href="https://dsc.gg/pastaclient" class="footer-link">Discord</a></li>
+                    <li><a href="#" class="footer-link">YouTube</a></li>
+                    <li><a href="#" class="footer-link">ВКонтакте</a></li>
+                </ul>
+            </div>
     </footer>
-  </div>
 
-  <button class="theme-toggle"><i class="fas fa-moon"></i></button>
-  <script src="files/file.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'931ca63e1a561d72',t:'MTc0NDkwMDUzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const photos = [
+            "/files/screenshots/1.png",
+            "/files/screenshots/2.png",
+            "/files/screenshots/3.png"
+        ];
+        const sliderImage = document.getElementById("slider-image");
+        let currentIndex = 0;
+
+        function changeImage() {
+            sliderImage.classList.remove("active");
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % photos.length;
+                sliderImage.src = photos[currentIndex];
+                setTimeout(() => {
+                    sliderImage.classList.add("active");
+                }, 50); 
+            }, 600); 
+        }
+
+        sliderImage.classList.add("active"); 
+        setInterval(changeImage, 4000); 
+    </script>
 </body>
 </html>

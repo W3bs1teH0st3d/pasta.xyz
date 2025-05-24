@@ -44,6 +44,7 @@
             </nav>
         </div>
     </header>
+
     <main class="auth-section">
         <div class="auth-container">
             <div class="auth-tabs">
@@ -54,12 +55,12 @@
             <div class="auth-form tab-pane active" id="login-form">
                 <form>
                     <div class="form-group">
-                        <input id="username" placeholder="Введите логин" required>
+                        <input id="login-username" placeholder="Введите логин" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" placeholder="Введите пароль" required>
+                        <input type="password" id="login-password" placeholder="Введите пароль" required>
                     </div>
-                    <div id="error-message" style="display: none;"></div>
+                    <div id="login-error-message" class="error-message" style="display: none;"></div>
                     <button type="submit" id="login-btn" class="button-primary">
                         <img src="/assets/auth.svg" class="logo-img">
                         Войти
@@ -71,26 +72,24 @@
             <div class="auth-form tab-pane" id="register-form">
                 <form>
                     <div class="form-group">
-                        <input type="text" id="username" placeholder="Придумайте логин" required>
+                        <input id="register-username" placeholder="Придумайте логин" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" placeholder="Придумайте пароль" required>
+                        <input type="password" id="register-password" placeholder="Придумайте пароль" required>
                     </div>
                     <div class="form-group">
                         <input type="password" id="register-password-confirm" placeholder="Повторите пароль" required>
                     </div>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="prinyal" required>
-                        Я полностью ознакомлен и 
-                        <a href="/eula" target="_blank">принимаю пользовательское соглашение</a>, а также даю свое согласие на 
-                        <a href="/datahandle" target="_blank">обработку персональных данных</a>.
-                    </label>
-                    <div id="error-message" style="display: none;"></div>
+                    <div class="form-group">
+                        <label>
+                        </label>
+                    </div>
+                    <div id="register-error-message" class="error-message" style="display: none;"></div>
                     <button type="submit" id="register-btn" class="button-primary">
                         <img src="/assets/auth.svg" class="logo-img">
                         Зарегистрироваться
                     </button>
-                    <p class="form-switch">Уже есть аккаунт? <a href="#" class="switch-tab" id="login-link" data-tab="login-form">Войдите</a></p>
+                    <p class="form-switch">Уже есть аккаунт? <a href="#" class="switch-tab" data-tab="login-form">Войдите</a></p>
                 </form>
             </div>
         </div>
@@ -115,6 +114,7 @@
                     <li><a href="#" class="footer-link">ВКонтакте</a></li>
                 </ul>
             </div>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>

@@ -7,16 +7,12 @@
     <link rel="shortcut icon" href="/files/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        :root {
-            --primary-color: #3f89c5 !important;
-            --secondary-color: #04193f !important;
-        }
-    </style>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script src="js/file.js" defer></script>
     <script src="js/log.js" defer></script>
+    <script src="js/cloudflare.js" defer></script>
 </head>
 <body>
     <header class="navbar">
@@ -60,8 +56,11 @@
                     <div class="form-group">
                         <input type="password" id="login-password" placeholder="Введите пароль" required>
                     </div>
+                    <div class="form-group">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAABecX0SsOEtJVI8s" data-callback="onLoginCaptchaSuccess"></div>
+                    </div>
                     <div id="login-error-message" class="error-message" style="display: none;"></div>
-                    <button type="submit" id="login-btn" class="button-primary">
+                    <button type="submit" id="login-btn" class="button-primary" disabled>
                         <img src="/assets/auth.svg" class="logo-img">
                         Войти
                     </button>
@@ -83,11 +82,14 @@
                     <div class="form-group">
                         <label class="checkbox-label">
                             <input type="checkbox" id="terms" required>
-                            Прочитал <a href="https://dsc.gg/pastaclient">Rule</a> Даю согласие
+                            Прочитал <a href="/terms">Rule</a> Даю согласие
                         </label>
                     </div>
+                    <div class="form-group">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAABecX0SsOEtJVI8s" data-callback="onRegisterCaptchaSuccess"></div>
+                    </div>
                     <div id="register-error-message" class="error-message" style="display: none;"></div>
-                    <button type="submit" id="register-btn" class="button-primary">
+                    <button type="submit" id="register-btn" class="button-primary" disabled>
                         <img src="/assets/auth.svg" class="logo-img">
                         Зарегистрироваться
                     </button>
